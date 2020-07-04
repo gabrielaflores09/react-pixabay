@@ -1,33 +1,49 @@
-import React from 'react';
-import { Container,TextField, Button, Grid} from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import React,{useState} from 'react';
+import { Container,TextField, Button, Grid, Divider} from "@material-ui/core";
+import Error from './Error';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
+const Header = ({guardarBusqueda}) => {
 
-const Header = () => {
-    const classes = useStyles();
+    const [termino, guardarTermino] = useState('');
+    const [error, guardarError] = useState(false);
+
+    const buscarImagenes = e =>{
+        e.preventDefault();
+
+        // Validar
+        if(termino.trim()===''){
+            guardarError(true);
+            return;
+        }
+        guardarError(false);
+
+        // Enviar a componente ppal
+        guardarBusqueda(termino);
+    }
 
     return ( 
         <Container>
             <div className="formulario" >
-                <p>Buscar de Imágenes</p>
-                <Grid container spacing={1}>
-                    <Grid container item sm={3}/>
-                    <Grid item xs={12} sm={4}>
-                        <TextField  fullWidth id="standard-basic" placeholder="Estrellas, paisajes, autos..."/>
-                    </Grid >
-                    
-                    <Grid item xs={12} sm={2}>
-                        <Button variant="contained" color="primary">Buscar</Button>
+                <p>Buscador de Imágenes</p>
+                <form onSubmit={buscarImagenes}>
+                    <Grid container spacing={1}>
+                        <Grid container item sm={3}/>
+                        <Grid item xs={12} sm={4}>
+                            <TextField  
+                                fullWidth id="standard-basic" 
+                                placeholder="Estrellas, paisajes, autos..."
+                                onChange={ e=> guardarTermino(e.target.value)}
+                            />
+                        </Grid >
+                        
+                        <Grid item xs={12} sm={2}>
+                            <Button variant="contained" color="primary" type="Submit">Buscar</Button>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </form>
             </div>
+            {error ? <Error mensaje="Agregue un término de búsqueda"/> : null }
+            <Divider />
         </Container>
      );
 }

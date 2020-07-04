@@ -1,5 +1,6 @@
 .formulario{
   text-align: center;
+  margin-bottom: 30px;
   
 }
 body{
@@ -9,4 +10,14 @@ body{
 
 .formulario p{
   font-size: 30px;
+}
+
+.error{
+  margin: 10px;
+}
+
+.busqueda{
+  margin:15px 0px 25px 0px;
+  font-size: 20px;
+  font-weight: bold;
 }

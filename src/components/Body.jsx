@@ -1,10 +1,29 @@
 import React from 'react';
-import {Container} from '@material-ui/core';
+import {Grid, Container } from '@material-ui/core';
+import Imagen from './Imagen';
 
-const Body = () => {
+const Body = ({imagenes, busqueda}) => {
+
     return ( 
         <Container>
-                    <h1>Hols</h1>
+                <div className="busqueda">
+                    Busqueda de "{busqueda}"
+                </div>
+                <Grid 
+                    direction="row"
+                    container
+                    justify="center"
+                    alignItems="center"
+                    spacing={5}
+                >
+                    {imagenes && imagenes.map(imagen =>(
+                        <Imagen
+                            key={imagen.id}
+                            image={imagen}
+                        />
+                    ))}
+                </Grid>
+           
         </Container>
 
      );
