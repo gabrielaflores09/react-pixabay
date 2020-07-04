@@ -7,7 +7,7 @@ const Body = ({imagenes, busqueda}) => {
     return ( 
         <Container>
                 <div className="busqueda">
-                    Busqueda de "{busqueda}"
+                    Resultados para "{busqueda}"
                 </div>
                 <Grid 
                     direction="row"

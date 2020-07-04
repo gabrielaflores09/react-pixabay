@@ -21,3 +21,8 @@ body{
   font-size: 20px;
   font-weight: bold;
 }
+
+.botonGroup{
+  text-align: center;
+  margin-top: 1rem;
+}
