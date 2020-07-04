@@ -1,5 +1,5 @@
 import React,{Fragment, useState, useEffect} from 'react';
-import {ButtonGroup,Button, Container} from '@material-ui/core';
+import {ButtonGroup,Button} from '@material-ui/core';
 import {FirstPage,LastPage} from '@material-ui/icons';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -36,6 +36,7 @@ function App() {
     const busq = document.querySelector('.busqueda');
     busq.scrollIntoView({behavior:'smooth'})
   }
+
   // Defino pagina anterior
   const pagAnterior = () =>{
 
@@ -46,6 +47,7 @@ function App() {
     }else{
       guardarPagActual(nuevaPagActual)
     }
+    
   }
 
   const pagSiguiente = () =>{
