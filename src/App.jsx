@@ -20,7 +20,7 @@ function App() {
 
     const imagenesPorPagina =32;
     const key='17217969-2979acf1d5fd3bedb4bfd1605';
-    const url=`https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagenesPorPagina}`;
+    const url=`https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagenesPorPagina}&page=${pagActual}`;
 
     const resp = await fetch(url);
     const resp_api = await resp.json();
@@ -32,9 +32,9 @@ function App() {
     const calcTotalPag = Math.ceil(resp_api.totalHits/imagenesPorPagina);
     guardarTotalPag(calcTotalPag);
 
-
-    console.log(resp_api);
-
+    //Ubicarse al inicio de la pagina
+    const busq = document.querySelector('.busqueda');
+    busq.scrollIntoView({behavior:'smooth'})
   }
   // Defino pagina anterior
   const pagAnterior = () =>{
@@ -60,7 +60,7 @@ function App() {
 
   useEffect(()=>{   
     consultarAPI();
-  },[busqueda])
+  },[busqueda, pagActual])
   return (
     <Fragment>
       <Header
@@ -75,18 +75,38 @@ function App() {
         <br/>
         <div className="botonGroup">
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button
-              onClick={pagAnterior}
-            >
-              <FirstPage size="small"/>
-              Anterior
-            </Button>
-            <Button
-              onClick={pagSiguiente}
-            >
-              Siguiente
-              <LastPage  size="small"/>
-            </Button>
+            {(pagActual === 1)? 
+              ( <Button
+                  onClick={pagAnterior}
+                  disabled
+                >
+                  <FirstPage size="small"/>
+                Anterior
+                </Button>)
+                :
+                ( <Button
+                    onClick={pagAnterior}
+                  >
+                  <FirstPage size="small"/>
+                    Anterior
+                 </Button>)
+            }
+            { (pagActual === totalPag)?
+              (<Button
+                onClick={pagSiguiente}
+                disabled
+              >
+                Siguiente
+                <LastPage  size="small"/>
+              </Button>)
+              :
+              <Button
+                onClick={pagSiguiente}
+              >
+                Siguiente
+                <LastPage  size="small"/>
+              </Button>
+            }
           </ButtonGroup> 
         </div>
       </Fragment>

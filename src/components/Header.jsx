@@ -24,7 +24,7 @@ const Header = ({guardarBusqueda}) => {
     return ( 
         <Container>
             <div className="formulario" >
-                <p>Buscador de Imágenes</p>
+                <p>Busca tus imágenes en Pixabay</p>
                 <form onSubmit={buscarImagenes}>
                     <Grid container spacing={1}>
                         <Grid container item sm={3}/>

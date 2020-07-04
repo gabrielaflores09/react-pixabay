@@ -1,15 +1,17 @@
 .formulario{
   text-align: center;
-  margin-bottom: 30px;
-  
+  margin: 10px;
+  background-color: #FFF6C8;
+  padding: 30px;  
 }
 body{
-  background-color: #DBD7C8;
+  background-color: #FFFCEC;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .formulario p{
   font-size: 30px;
+  margin-top: 0px;
 }
 
 .error{
