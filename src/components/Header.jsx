@@ -1,21 +1,12 @@
 import React,{useState} from 'react';
 import { Container,TextField, Button, Grid, Divider} from "@material-ui/core";
-import Error from './Error';
 
 const Header = ({guardarBusqueda}) => {
 
     const [termino, guardarTermino] = useState('');
-    const [error, guardarError] = useState(false);
 
     const buscarImagenes = e =>{
         e.preventDefault();
-
-        // Validar
-        if(termino.trim()===''){
-            guardarError(true);
-            return;
-        }
-        guardarError(false);
 
         // Enviar a componente ppal
         guardarBusqueda(termino);
@@ -33,6 +24,7 @@ const Header = ({guardarBusqueda}) => {
                                 fullWidth id="standard-basic" 
                                 placeholder="Estrellas, paisajes, autos..."
                                 onChange={ e=> guardarTermino(e.target.value)}
+                                required
                             />
                         </Grid >
                         
@@ -42,7 +34,6 @@ const Header = ({guardarBusqueda}) => {
                     </Grid>
                 </form>
             </div>
-            {error ? <Error mensaje="Agregue un término de búsqueda"/> : null }
             <Divider />
         </Container>
      );
